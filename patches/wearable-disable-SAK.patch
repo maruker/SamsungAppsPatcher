@@ -1,6 +1,6 @@
 --- smali/com/samsung/android/app/twatchmanager/sak/VerificationManager.smali
 +++ smali/com/samsung/android/app/twatchmanager/sak/VerificationManager.smali
-@@ -890,202 +890,13 @@
+@@ -1004,212 +1004,13 @@
      return-void
  .end method
  
@@ -8,7 +8,7 @@
  .method public isSupportSAKVerify()Z
 -    .locals 7
 -
--    const-string v0, "tUHM:SAK:VerificationManager"
+-    const-string v0, "SAK:VerificationManager"
 -
 -    const/4 v1, 0x0
 -
@@ -42,25 +42,39 @@
 -
 -    goto :goto_0
 -
+-    :catch_0
+-    move-exception v2
+-
+-    goto/16 :goto_2
+-
 -    :cond_0
--    const/4 v2, 0x0
+-    move v2, v1
 -
 -    :goto_0
--    invoke-static {}, Lcom/samsung/android/app/twatchmanager/util/HostManagerUtils;->isSamsungDevice()Z
+-    invoke-static {}, Lcom/samsung/android/app/global/utils/PlatformUtils;->isSamsungDevice()Z
 -
 -    move-result v4
 -
 -    const/4 v5, 0x1
 -
--    if-nez v4, :cond_2
+-    if-nez v4, :cond_3
 -
 -    sget v3, Landroid/os/Build$VERSION;->SDK_INT:I
 -
--    const/16 v4, 0x1a
+-    const/16 v4, 0x21
 -
 -    if-lt v3, v4, :cond_1
 -
--    if-lt v2, v4, :cond_1
+-    const-string v2, "isSupportSAKVerify : Non Samsung Device - not support for Android T/U OS issue"
+-
+-    invoke-static {v0, v2}, Lb5/a;->l(Ljava/lang/String;Ljava/lang/String;)V
+-
+-    return v1
+-
+-    :cond_1
+-    const/16 v3, 0x1a
+-
+-    if-lt v2, v3, :cond_2
 -
 -    invoke-static {}, Lcom/samsung/android/app/twatchmanager/sak/GAKVerifier;->getInstance()Lcom/samsung/android/app/twatchmanager/sak/GAKVerifier;
 -
@@ -72,18 +86,18 @@
 -
 -    const-string v2, "isSupportSAKVerify : Non Samsung Device, GAK support"
 -
--    invoke-static {v0, v2}, Lcom/samsung/android/app/twatchmanager/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)V
+-    invoke-static {v0, v2}, Lb5/a;->l(Ljava/lang/String;Ljava/lang/String;)V
 -
 -    return v5
 -
--    :cond_1
+-    :cond_2
 -    const-string v2, "isSupportSAKVerify : Non Samsung Device, GAK not support"
 -
--    invoke-static {v0, v2}, Lcom/samsung/android/app/twatchmanager/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)V
+-    invoke-static {v0, v2}, Lb5/a;->l(Ljava/lang/String;Ljava/lang/String;)V
 -
 -    return v1
 -
--    :cond_2
+-    :cond_3
 -    invoke-static {}, Lcom/samsung/android/app/twatchmanager/factory/SystemPropertyFactory;->getAndroidSystemProperty()Lcom/samsung/android/app/watchmanager/libinterface/AndroidSystemInterface;
 -
 -    move-result-object v4
@@ -98,28 +112,28 @@
 -
 -    move-result-object v4
 -
--    if-eqz v4, :cond_6
+-    if-eqz v4, :cond_7
 -
 -    invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 -
 -    move-result v3
 -
--    if-nez v3, :cond_6
+-    if-nez v3, :cond_7
 -
 -    const/16 v3, 0x1b
 -
--    if-ge v2, v3, :cond_3
+-    if-ge v2, v3, :cond_4
 -
 -    goto :goto_1
 -
--    :cond_3
+-    :cond_4
 -    const-string v2, "sak"
 -
 -    invoke-virtual {v4, v2}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 -
 -    move-result v2
 -
--    if-eqz v2, :cond_4
+-    if-eqz v2, :cond_5
 -
 -    invoke-static {}, Lcom/samsung/android/app/twatchmanager/sak/SAKVerifier;->getInstance()Lcom/samsung/android/app/twatchmanager/sak/SAKVerifier;
 -
@@ -131,18 +145,18 @@
 -
 -    const-string v2, "isSupportSAKVerify : SAK support"
 -
--    invoke-static {v0, v2}, Lcom/samsung/android/app/twatchmanager/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)V
+-    invoke-static {v0, v2}, Lb5/a;->l(Ljava/lang/String;Ljava/lang/String;)V
 -
 -    return v5
 -
--    :cond_4
+-    :cond_5
 -    const-string v2, "gak"
 -
 -    invoke-virtual {v4, v2}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 -
 -    move-result v2
 -
--    if-eqz v2, :cond_5
+-    if-eqz v2, :cond_6
 -
 -    invoke-static {}, Lcom/samsung/android/app/twatchmanager/sak/GAKVerifier;->getInstance()Lcom/samsung/android/app/twatchmanager/sak/GAKVerifier;
 -
@@ -154,39 +168,35 @@
 -
 -    const-string v2, "isSupportSAKVerify : GAK support"
 -
--    invoke-static {v0, v2}, Lcom/samsung/android/app/twatchmanager/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)V
+-    invoke-static {v0, v2}, Lb5/a;->l(Ljava/lang/String;Ljava/lang/String;)V
 -
 -    return v5
 -
--    :cond_5
+-    :cond_6
 -    const-string v2, "isSupportSAKVerify : not support verifier"
 -
--    invoke-static {v0, v2}, Lcom/samsung/android/app/twatchmanager/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)V
+-    invoke-static {v0, v2}, Lb5/a;->l(Ljava/lang/String;Ljava/lang/String;)V
 -
 -    return v1
 -
--    :cond_6
+-    :cond_7
 -    :goto_1
 -    const-string v2, "No information about Key type or Attestation not supported"
 -
--    invoke-static {v0, v2}, Lcom/samsung/android/app/twatchmanager/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)V
+-    invoke-static {v0, v2}, Lb5/a;->l(Ljava/lang/String;Ljava/lang/String;)V
 -    :try_end_1
 -    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
 -
 -    return v1
 -
--    :catch_0
--    move-exception v2
--
+-    :goto_2
 -    new-instance v3, Ljava/lang/StringBuilder;
--
--    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 -
 -    const-string v4, "isSupportSAKVerify Exception : "
 -
--    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+-    invoke-direct {v3, v4}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 -
--    invoke-virtual {v2}, Ljava/lang/Exception;->toString()Ljava/lang/String;
+-    invoke-virtual {v2}, Ljava/lang/Object;->toString()Ljava/lang/String;
 -
 -    move-result-object v4
 -
@@ -196,17 +206,17 @@
 -
 -    move-result-object v3
 -
--    invoke-static {v0, v3}, Lcom/samsung/android/app/twatchmanager/log/Log;->i(Ljava/lang/String;Ljava/lang/String;)V
+-    invoke-static {v0, v3}, Lb5/a;->g(Ljava/lang/String;Ljava/lang/String;)V
 +    .locals 1
  
--    invoke-virtual {v2}, Ljava/lang/Exception;->printStackTrace()V
+-    invoke-virtual {v2}, Ljava/lang/Throwable;->printStackTrace()V
 +    const/4 v0, 0x0
  
 -    return v1
 +    return v0
  .end method
  
- .method public requestSAKVerify(Landroid/bluetooth/BluetoothDevice;)V
+ .method public registerVerificationStateCallback(Lcom/samsung/android/app/twatchmanager/sak/VerificationStateCallback;)V
 -- 
-2.34.1
+2.47.0
 
