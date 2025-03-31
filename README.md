@@ -15,9 +15,10 @@ I haven't tried it myself of course but it's worth checking out
 
 
 
-## Download pre-patched apps
+## Download platform-tools
 
-You can find the pre-patched apks at the project website: https://adil.hanney.org/SamsungAppsPatcher/.
+> [!TIP]
+> If you are using apktool from Android Studio, you probably don't need anything else
 
 The platform-tools zip are in the MEGA drive, if you need them to patch your own apps: https://mega.nz/folder/sUFj2C5b#M4zEP-c9ylY-ENxPw7qCUQ.
 
@@ -25,7 +26,7 @@ The platform-tools zip are in the MEGA drive, if you need them to patch your own
 
 ## App support
 
-These are the apps that <s>probably work</s> (please check the [project website](https://adil.hanney.org/SamsungAppsPatcher/) for compatibility ratings) along with a link to apkmirror where you can download an **unpatched** apk. Please note that I cannot test the majority of the plugins because I don't have the devices myself, and no longer use my Galaxy Watch regularly.
+These are the apps that need patching along with a link to apkmirror where you can download an **unpatched** apk. Please note that I cannot test the majority of the plugins because I don't have the devices myself, and no longer use my Galaxy Watch regularly.
 
 ### Core
 
