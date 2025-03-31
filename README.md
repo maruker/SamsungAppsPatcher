@@ -3,11 +3,8 @@
 This is a guide to patch galaxy wearable apps to work on a modified samsung phone. This was originally taken from an [xda post by dansimko](https://forum.xda-developers.com/t/app-mod-galaxy-wearable-patch-for-samsung-phones-with-custom-roms.4208143/) but I wanted to make it a little easier to follow. I've since scripted the process, kept the patches up to date, and added new patches. The scripts are written for linux in bash, so if you're using something else, you could try the old (manual) guide at https://gist.github.com/adil192/ab95808fb66b6cde3d63ded6c19b0f1d.
 
 
-
-## Important notice
-
-| As I've moved on from having a Samsung phone and Samsung accessories, I will no longer be maintaining this project. |
-| ------------------------------------------------------------ |
+> [!WARNING]
+> Watch plugins are out of date and probably don't work. I have [forked](https://github.com/adil192/SamsungAppsPatcher) this project and updated the patches for the Accessoryservice, Health and Wearable apps, but I didn't update the plugins and I don't have the necessary watches to test them.
 
 ## March 2023 update
 
